@@ -7,31 +7,6 @@ class DataManagerAPIClient @Inject constructor(
     private val apiForecast5D: Forecast5DAPIService,
     private val apiForecast12H: Forecast12HAPIService
 ) {
-    data class WeatherData(
-        var observationDateTime: String?,
-        var currWeatherPhrase: String?,
-        var isDayTime: Boolean?,
-        var currTemperature: Double?,
-        var realFeelTemperature: Double?,
-        var list5DaysWeather: List<Each5Days>,
-        var list12HWeather: List<Each12H>
-    )
-
-    data class Each5Days(
-        var minValue: Double?,
-        var maxValue: Double?,
-        var iconDay: Int?,
-        var dayPhrase: String?,
-        var iconNight: Int?,
-        var nightPhrase: String?
-    )
-
-    data class Each12H(
-        var epochDateTime: Long?,
-        var weatherIcon: Int?,
-        var hourlyTempValue: Double?
-    )
-
 
     suspend fun getAllWeatherData(): WeatherData? {
         val responseCurrentCond = apiCurrentCondition.getCurrentCondition()
