@@ -8,8 +8,6 @@ import retrofit2.http.Headers
 
 private const val key = "C1uAGGDch94QSJ6FSiv5X8J72mwv1cp9"
 private const val myLocationKey = "2579865"
-const val BASE_ULR =
-    "https://dataservice.accuweather.com/"
 
 /**
  * Interface that defines a GET HTTP operation to get the Current Condition from accuweather.com server.
