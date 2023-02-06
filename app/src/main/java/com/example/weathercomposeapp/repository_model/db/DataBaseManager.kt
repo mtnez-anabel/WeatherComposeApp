@@ -21,7 +21,7 @@ class DataBaseManager @Inject constructor(
         dao.insertData(currCond, list5D, list12H)
     }
 
-    suspend fun getFromDB(): WeatherData{
+    suspend fun getFromDB(): WeatherData?{
         val weatherRelations = dao.getWeatherData()
         val list5DaysWeather = mutableListOf<Each5Days>()
         for (i in 0..4) {
