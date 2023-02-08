@@ -6,7 +6,7 @@ import androidx.room.*
 interface WeatherDao {
     @Transaction
     @Query("SELECT * FROM curr_conditions_table")
-    suspend fun getWeatherData(): WeatherRelations
+    suspend fun getWeatherData(): WeatherRelations?
 
 
     @Transaction

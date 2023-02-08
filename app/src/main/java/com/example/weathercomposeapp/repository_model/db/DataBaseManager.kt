@@ -23,36 +23,38 @@ class DataBaseManager @Inject constructor(
 
     suspend fun getFromDB(): WeatherData?{
         val weatherRelations = dao.getWeatherData()
-        val list5DaysWeather = mutableListOf<Each5Days>()
-        for (i in 0..4) {
-            val each5Days = Each5Days(
-                minValue = weatherRelations.list5D[i].minValue,
-                maxValue = weatherRelations.list5D[i].maxValue,
-                iconDay = weatherRelations.list5D[i].iconDay,
-                dayPhrase = weatherRelations.list5D[i].dayPhrase,
-                iconNight = weatherRelations.list5D[i].iconNight,
-                nightPhrase = weatherRelations.list5D[i].nightPhrase
+        if (weatherRelations != null) {
+            val list5DaysWeather = mutableListOf<Each5Days>()
+            for (i in 0..4) {
+                val each5Days = Each5Days(
+                    minValue = weatherRelations.list5D[i].minValue,
+                    maxValue = weatherRelations.list5D[i].maxValue,
+                    iconDay = weatherRelations.list5D[i].iconDay,
+                    dayPhrase = weatherRelations.list5D[i].dayPhrase,
+                    iconNight = weatherRelations.list5D[i].iconNight,
+                    nightPhrase = weatherRelations.list5D[i].nightPhrase
+                )
+                list5DaysWeather.add(each5Days)
+            }
+            val list12HWeather = mutableListOf<Each12H>()
+            for (i in 0..11) {
+                val each12Hours = Each12H(
+                    epochDateTime = weatherRelations.list12H[i].epochDateTime,
+                    weatherIcon = weatherRelations.list12H[i].weatherIcon,
+                    hourlyTempValue = weatherRelations.list12H[i].hourlyTempValue
+                )
+                list12HWeather.add(each12Hours)
+            }
+            return WeatherData(
+                observationDateTime = weatherRelations.currCond.observationDateTime,
+                currWeatherPhrase = weatherRelations.currCond.currWeatherPhrase,
+                isDayTime = weatherRelations.currCond.isDayTime,
+                currTemperature = weatherRelations.currCond.currTemperature,
+                realFeelTemperature = weatherRelations.currCond.realFeelTemperature,
+                list5DaysWeather = list5DaysWeather,
+                list12HWeather = list12HWeather
             )
-            list5DaysWeather.add(each5Days)
-        }
-        val list12HWeather = mutableListOf<Each12H>()
-        for (i in 0..11) {
-            val each12Hours = Each12H(
-                epochDateTime = weatherRelations.list12H[i].epochDateTime,
-                weatherIcon = weatherRelations.list12H[i].weatherIcon,
-                hourlyTempValue = weatherRelations.list12H[i].hourlyTempValue
-            )
-            list12HWeather.add(each12Hours)
-        }
-        return WeatherData(
-            observationDateTime = weatherRelations.currCond.observationDateTime,
-            currWeatherPhrase = weatherRelations.currCond.currWeatherPhrase,
-            isDayTime = weatherRelations.currCond.isDayTime,
-            currTemperature = weatherRelations.currCond.currTemperature,
-            realFeelTemperature = weatherRelations.currCond.realFeelTemperature,
-            list5DaysWeather = list5DaysWeather,
-            list12HWeather = list12HWeather
-        )
+        } else return null
     }
 
     suspend fun updateDataBase( data: WeatherData) {
@@ -61,7 +63,7 @@ class DataBaseManager @Inject constructor(
         val list5D = getListEach5DaysEntity(data)
         val list12H = getListEach12HoursEntity(data)
         dao.updateData(
-            dataEntities.currCond,
+            dataEntities!!.currCond,
             dataEntities.list5D,
             dataEntities.list12H,
             currCond,
