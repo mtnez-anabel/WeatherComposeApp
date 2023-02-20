@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import com.example.weathercomposeapp.repository_model.db.FixedData
 import com.example.weathercomposeapp.ui.theme.WeatherComposeAppTheme
 import com.example.weathercomposeapp.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,38 +22,35 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val weatherViewModel: WeatherViewModel by viewModels<WeatherViewModel>()
+    private val weatherViewModel: WeatherViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
             weatherViewModel.onCreate()
             weatherViewModel.weatherModel.observe(this@MainActivity, Observer {
                 Log.i("Data Weather............", it.toString())
+                setContent {
+                    WeatherComposeAppTheme {
+                        // A surface container using the 'background' color from the theme
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = MaterialTheme.colors.background
+                        ) {
+                            WeatherScreen(data = it)
+                        }
+                    }
+                }
             })
         }
-        setContent {
-            WeatherComposeAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
+
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     WeatherComposeAppTheme {
-        Greeting("Android")
+        WeatherScreen(data = FixedData.fixedData)
     }
 }
