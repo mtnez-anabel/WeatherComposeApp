@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WeatherComposeApp</string>
+    <string name="Today_Text">Today</string>
 </resources>

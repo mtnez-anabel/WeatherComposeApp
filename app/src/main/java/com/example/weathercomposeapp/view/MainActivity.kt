@@ -1,16 +1,19 @@
 package com.example.weathercomposeapp.view
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +26,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val weatherViewModel: WeatherViewModel by viewModels()
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
@@ -31,7 +35,6 @@ class MainActivity : ComponentActivity() {
                 Log.i("Data Weather............", it.toString())
                 setContent {
                     WeatherComposeAppTheme {
-                        // A surface container using the 'background' color from the theme
                         Surface(
                             modifier = Modifier.fillMaxSize(),
                             color = MaterialTheme.colors.background
@@ -42,11 +45,11 @@ class MainActivity : ComponentActivity() {
                 }
             })
         }
-
     }
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -54,3 +57,18 @@ fun DefaultPreview() {
         WeatherScreen(data = FixedData.fixedData)
     }
 }
+
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
+//@Composable
+//fun DefaultPreview() {
+//    SecondCard(data = FixedData.fixedData)
+//}
+
+
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
+//@Composable
+//fun DefaultPreview() {
+//    ThirdCard(data = FixedData.fixedData)
+//}

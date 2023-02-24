@@ -58,6 +58,10 @@ fun getEachHour(e: Long): String {
     }
 }
 
+fun getEachTempHour(e: Double): String{
+    return mf.format(Measure(e, MeasureUnit.CELSIUS))
+}
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun getWeekday(i: Int): String {
     val calendar = Calendar.getInstance()
