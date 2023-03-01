@@ -1,4 +1,4 @@
-package com.example.weathercomposeapp.repository_model
+package com.example.weathercomposeapp.repository_model.api
 
 data class Each5Days(
     var minValue: Double?,

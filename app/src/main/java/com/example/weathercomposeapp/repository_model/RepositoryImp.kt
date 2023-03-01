@@ -1,5 +1,6 @@
 package com.example.weathercomposeapp.repository_model
 
+import com.example.weathercomposeapp.repository_model.api.DataManagerAPIClient
 import com.example.weathercomposeapp.repository_model.db.DataBaseManager
 import com.example.weathercomposeapp.repository_model.db.FixedData
 import javax.inject.Inject

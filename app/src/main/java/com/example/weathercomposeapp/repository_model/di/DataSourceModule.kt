@@ -1,9 +1,9 @@
 package com.example.weathercomposeapp.repository_model.di
 import android.content.Context
 import androidx.room.Room
-import com.example.weathercomposeapp.repository_model.CurrCondAPIService
-import com.example.weathercomposeapp.repository_model.Forecast12HAPIService
-import com.example.weathercomposeapp.repository_model.Forecast5DAPIService
+import com.example.weathercomposeapp.repository_model.api.CurrCondAPIService
+import com.example.weathercomposeapp.repository_model.api.Forecast12HAPIService
+import com.example.weathercomposeapp.repository_model.api.Forecast5DAPIService
 import com.example.weathercomposeapp.repository_model.db.WeatherDao
 import com.example.weathercomposeapp.repository_model.db.WeatherDataBase
 import dagger.Module
@@ -13,7 +13,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 const val BASE_ULR =

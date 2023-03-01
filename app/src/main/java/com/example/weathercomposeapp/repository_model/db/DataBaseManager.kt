@@ -1,7 +1,7 @@
 package com.example.weathercomposeapp.repository_model.db
 
-import com.example.weathercomposeapp.repository_model.Each12H
-import com.example.weathercomposeapp.repository_model.Each5Days
+import com.example.weathercomposeapp.repository_model.api.Each12H
+import com.example.weathercomposeapp.repository_model.api.Each5Days
 import com.example.weathercomposeapp.repository_model.WeatherData
 import javax.inject.Inject
 

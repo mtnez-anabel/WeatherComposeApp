@@ -50,14 +50,14 @@ class MainActivity : ComponentActivity() {
 }
 
 
-//@RequiresApi(Build.VERSION_CODES.O)
-//@Preview(showBackground = true)
-//@Composable
-//fun DefaultPreview() {
-//    WeatherComposeAppTheme {
-//        WeatherScreen(data = FixedData.fixedData)
-//    }
-//}
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    WeatherComposeAppTheme {
+        WeatherScreen(data = FixedData.fixedData, LocalContext.current)
+    }
+}
 
 //@RequiresApi(Build.VERSION_CODES.O)
 //@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
@@ -74,8 +74,8 @@ class MainActivity : ComponentActivity() {
 //    ThirdCard(data = FixedData.fixedData)
 //}
 
-@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
-@Composable
-fun DefaultPreview() {
-    AccuWeatherInfo(LocalContext.current)
-}
+//@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
+//@Composable
+//fun DefaultPreview() {
+//    AccuWeatherInfo(LocalContext.current)
+//}
