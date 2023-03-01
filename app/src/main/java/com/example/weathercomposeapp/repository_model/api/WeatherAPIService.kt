@@ -1,10 +1,7 @@
-package com.example.weathercomposeapp.repository_model
+package com.example.weathercomposeapp.repository_model.api
 
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Headers
 
 private const val key = "C1uAGGDch94QSJ6FSiv5X8J72mwv1cp9"
 private const val myLocationKey = "2579865"

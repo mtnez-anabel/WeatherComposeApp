@@ -1,5 +1,6 @@
-package com.example.weathercomposeapp.repository_model
+package com.example.weathercomposeapp.repository_model.api
 
+import com.example.weathercomposeapp.repository_model.WeatherData
 import javax.inject.Inject
 
 class DataManagerAPIClient @Inject constructor(
