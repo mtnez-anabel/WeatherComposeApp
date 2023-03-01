@@ -13,7 +13,6 @@ import javax.inject.Inject
 interface Repository {
     suspend fun getWeatherDataFromApi(): WeatherData?
     suspend fun getWeatherDataFromDB(): WeatherData?
-
 }
 
 
