@@ -14,6 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize(),
                             color = MaterialTheme.colors.background
                         ) {
-                            WeatherScreen(data = it)
+                            WeatherScreen(data = it, context = LocalContext.current)
                         }
                     }
                 }
@@ -49,14 +50,14 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    WeatherComposeAppTheme {
-        WeatherScreen(data = FixedData.fixedData)
-    }
-}
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    WeatherComposeAppTheme {
+//        WeatherScreen(data = FixedData.fixedData)
+//    }
+//}
 
 //@RequiresApi(Build.VERSION_CODES.O)
 //@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
@@ -72,3 +73,9 @@ fun DefaultPreview() {
 //fun DefaultPreview() {
 //    ThirdCard(data = FixedData.fixedData)
 //}
+
+@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
+@Composable
+fun DefaultPreview() {
+    AccuWeatherInfo(LocalContext.current)
+}

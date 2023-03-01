@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WeatherComposeApp</string>
     <string name="Today_Text">Today</string>
+    <string name="accuweather_link">accuweather.com</string>
 </resources>
