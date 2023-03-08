@@ -29,9 +29,10 @@ class DataManagerAPIClient @Inject constructor(
         val listH = mutableListOf<Each12H>()
         for (i in 0..11) {
             val epDateTime = responseForecast12H.body()?.get(i)?.epochDateTime
-            val wIcon = responseForecast12H.body()?.get(i)?.weatherIcon
+            val isDaylight = responseForecast12H.body()?.get(i)?.isDaylight
+            val iconPhrase =  responseForecast12H.body()?.get(i)?.iconPhrase
             val hTempValue = responseForecast12H.body()?.get(i)?.hourlyTemperature?.hourlyTempValue
-            listH.add(i, Each12H(epDateTime, wIcon, hTempValue))
+            listH.add(i, Each12H(epDateTime, isDaylight,iconPhrase, hTempValue))
         }
 
         return WeatherData(

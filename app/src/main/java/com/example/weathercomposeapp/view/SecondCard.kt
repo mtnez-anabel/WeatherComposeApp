@@ -36,11 +36,12 @@ fun SecondCard(data: WeatherData) {
         ) {
         LazyRow(modifier = Modifier.padding(5.dp)) {
             items(getItemHourList(data)) {
-                ItemHourlyInfo( it)
+                ItemHourlyInfo(it)
             }
         }
     }
 }
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ItemHourlyInfo(itemHour: ItemHour) {
@@ -80,18 +81,21 @@ fun ItemHourlyInfo(itemHour: ItemHour) {
         )
     }
 }
+
 data class ItemHour(
     val hour: String,
     val icon: Int,
     val temperature: String
 )
+
 @RequiresApi(Build.VERSION_CODES.O)
 fun getItemHourList(data: WeatherData) = (0..11).map {
     val epoc = data.list12HWeather[it].epochDateTime!!
     val eachTemp = data.list12HWeather[it].hourlyTempValue!!
     ItemHour(
         hour = getEachHour(epoc),
-        icon = R.drawable.sunny_ic,
+        icon = getIconEach12H(it, data),
+        //icon = R.drawable.sunny_day_ic,
         temperature = getEachTempHour(eachTemp)
     )
 }

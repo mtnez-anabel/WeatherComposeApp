@@ -18,8 +18,11 @@ import com.example.weathercomposeapp.repository_model.WeatherData
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun WeatherScreen(data: WeatherData, context: Context) {
+    val pair = getBackgroundLogo(data)
+    val background = pair.first
+    val logo = pair.second
     Box(modifier = Modifier.fillMaxSize()) {
-        WeatherBackground()
+        WeatherBackground(background)
         LazyColumn(
         ) {
             item {
@@ -32,16 +35,16 @@ fun WeatherScreen(data: WeatherData, context: Context) {
                 ThirdCard(data)
             }
             item {
-                AccuWeatherInfo(context)
+                AccuWeatherInfo(context, logo)
             }
         }
     }
 }
 
 @Composable
-fun WeatherBackground() {
+fun WeatherBackground(bg: Int) {
     Image(
-        painter = painterResource(id = R.mipmap.blue_sky_bg),
+        painter = painterResource(id = bg),
         contentDescription = "background",
         contentScale = ContentScale.FillBounds,
         modifier = Modifier.fillMaxSize()

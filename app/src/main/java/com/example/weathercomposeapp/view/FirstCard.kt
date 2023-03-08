@@ -98,7 +98,7 @@ fun CurrTempAndIconRow(data: WeatherData) {
             modifier = Modifier.weight(2f)
         )
         Image(
-            painter = painterResource(id = R.drawable.sunny_ic),
+            painter = painterResource(id = getIconCurrCond(data)),
             contentDescription = "icon",
             contentScale = ContentScale.Crop,
             modifier = Modifier.weight(1f)
