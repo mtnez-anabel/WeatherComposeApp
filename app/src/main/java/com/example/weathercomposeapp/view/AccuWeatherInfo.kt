@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.example.weathercomposeapp.R
 
 @Composable
-fun AccuWeatherInfo( context: Context) {
+fun AccuWeatherInfo( context: Context, image: Int) {
     Row(
         modifier = Modifier.padding(8.dp).fillMaxWidth().clickable { onClick(context) },
         horizontalArrangement = Arrangement.Center,
@@ -52,7 +52,7 @@ fun AccuWeatherInfo( context: Context) {
 
         )
         Image(
-            painter = painterResource(id = R.drawable.accuweather_dark),
+            painter = painterResource(id = image),
             contentDescription = "icon",
             contentScale = ContentScale.Fit,
             modifier = Modifier.padding(5.dp)

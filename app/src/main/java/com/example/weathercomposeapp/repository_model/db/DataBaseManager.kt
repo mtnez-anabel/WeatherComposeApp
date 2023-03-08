@@ -40,7 +40,8 @@ class DataBaseManager @Inject constructor(
             for (i in 0..11) {
                 val each12Hours = Each12H(
                     epochDateTime = weatherRelations.list12H[i].epochDateTime,
-                    weatherIcon = weatherRelations.list12H[i].weatherIcon,
+                    isDaylight = weatherRelations.list12H[i].isDaylight,
+                    iconPhrase = weatherRelations.list12H[i].iconPhrase,
                     hourlyTempValue = weatherRelations.list12H[i].hourlyTempValue
                 )
                 list12HWeather.add(each12Hours)
@@ -107,7 +108,8 @@ class DataBaseManager @Inject constructor(
                 idHour = i,
                 momentObservation12H = data.observationDateTime!!,
                 epochDateTime = data.list12HWeather[i].epochDateTime!!,
-                weatherIcon = data.list12HWeather[i].weatherIcon!!,
+                isDaylight = data.list12HWeather[i].isDaylight!!,
+                iconPhrase = data.list12HWeather[i].iconPhrase!!,
                 hourlyTempValue = data.list12HWeather[i].hourlyTempValue!!
             )
             list12H.add(each12Hours)

@@ -45,6 +45,7 @@ data class Each12HoursEntity(
     @PrimaryKey val idHour: Int,
     val momentObservation12H: String,
     val epochDateTime: Long,
-    val weatherIcon: Int,
+    val isDaylight: Boolean,
+    val iconPhrase: String,
     val hourlyTempValue: Double
 )

@@ -4,8 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -93,7 +91,8 @@ fun getItemDailyList(data: WeatherData) = (1..4).map {
     val maxT = data.list5DaysWeather[it].maxValue!!
     ItemDay(
         day = getWeekday(it),
-        icon = R.drawable.sunny_ic,
+        icon = getIconEach5D(it,data),
+        //icon = R.drawable.sunny_day_ic,
         minMaxTemperature = setMaxAndMinTemperature(minT, maxT)
     )
 }
