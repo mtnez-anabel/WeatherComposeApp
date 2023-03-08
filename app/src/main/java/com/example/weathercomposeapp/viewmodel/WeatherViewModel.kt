@@ -15,8 +15,8 @@ class WeatherViewModel @Inject constructor(private val repository: RepositoryImp
     val weatherModel = MutableLiveData<WeatherData>()
     fun onCreate() {
         viewModelScope.launch {
-            val result = repository.getWeatherData()
-            //val result = FixedData.fixedData
+            //val result = repository.getWeatherData()
+            val result = FixedData.fixedData
             weatherModel.postValue(result)
         }
     }
