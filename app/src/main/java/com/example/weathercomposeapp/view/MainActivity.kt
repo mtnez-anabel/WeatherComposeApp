@@ -1,5 +1,6 @@
 package com.example.weathercomposeapp.view
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +11,9 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Observer
@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val weatherViewModel: WeatherViewModel by viewModels()
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,17 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize(),
                             color = MaterialTheme.colors.background
                         ) {
-                            WeatherScreen(data = it, context = LocalContext.current)
+                            val configuration = LocalConfiguration.current
+                            when (configuration.orientation) {
+                                Configuration.ORIENTATION_LANDSCAPE -> {
+                                    WeatherScreenLandscape(data = it, context = LocalContext.current
+                                    )
+                                }
+                                Configuration.ORIENTATION_PORTRAIT -> {
+                                    WeatherScreenPortrait(data = it, context = LocalContext.current)
+                                }
+                                else -> {}
+                            }
                         }
                     }
                 }
@@ -55,27 +66,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     WeatherComposeAppTheme {
-        WeatherScreen(data = FixedData.fixedData, LocalContext.current)
+        WeatherScreenPortrait(data = FixedData.fixedData, LocalContext.current)
     }
 }
 
 //@RequiresApi(Build.VERSION_CODES.O)
-//@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
+//@Preview(heightDp = 300, widthDp = 700)
 //@Composable
 //fun DefaultPreview() {
-//    SecondCard(data = FixedData.fixedData)
-//}
-
-
-//@RequiresApi(Build.VERSION_CODES.O)
-//@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
-//@Composable
-//fun DefaultPreview() {
-//    ThirdCard(data = FixedData.fixedData)
-//}
-
-//@Preview(showBackground = true, widthDp = 400, heightDp = 400, backgroundColor = 54432)
-//@Composable
-//fun DefaultPreview() {
-//    AccuWeatherInfo(LocalContext.current)
+//    WeatherScreenLandscape(data = FixedData.fixedData, context = LocalContext.current)
 //}
